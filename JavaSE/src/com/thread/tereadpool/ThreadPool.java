@@ -5,6 +5,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 线程池
+ * 
+ * 
+ * 
+ * 
+ */
 
 
 /**
@@ -71,6 +78,10 @@ class ThreadLocalDemo extends Thread{
  *所以将线程交给线程池来管理，节约内存。
  *一般在企业开发当中我们都使用线程池。
  *spring整合线程池，异步注解。 
+ *
+ *ThreadPoolExecutor
+ *
+ *
  * @author Yin
  * 
  * Executors jdk1.5并发包
@@ -83,7 +94,49 @@ class ThreadLocalDemo extends Thread{
  * 
  * newSingleThreadExecutor 单线程
  * 
- *
+ * ThreadPoolExecutor构造函数参数
+ * 核心池大小 
+ * 线程池大小
+ * 终止时间
+ * 超时秒数
+ * 
+ * 用户线程-->核心线程池-->线程任务执行
+ *								|
+ *					  线程缓存队列
+ *							    |
+ *                      最大线程池
+ *                   			|
+ *                   	  拒绝任务
+ *                    
+ * 线程池配置多少合适：
+ * CPU密集：线程数和CPU数相同，频繁调度
+ * IO密集：2*CPU核数 会有阻塞
+ *                    
+ * 锁机制
+ * 悲观锁：每次拿数据，都会上锁
+ * 乐观锁：version和影响行数
+ * 重入锁：可以传递，重复利用 synchorized lock
+ * 读写锁：ReentrantReadWriteLock
+ * 				lock.readlock()
+ * 				lock.writelock()
+ * CAS无锁:
+ * 原子类的底层实现原理：CAS无锁机制比有锁机制高。
+ * CAS体系中有三个参数：V要更新的值 E预期值 N新值
+ * 判断更新值与预期值是否一样。
+ * 
+ * 自旋锁：CAS无锁机制。自旋锁是采用让当前线程不停地的在循环体内执行实现的，
+ * 当循环的条件被其他线程改变时 才能进入临界区
+ * 排他锁
+ *                    
+ *  
+ * 分布式锁
+ * zk实现分布式锁的原理：
+ * 在zk上创建一个临时节点，只要谁服务器能创建节点成功，
+ * 就能获取锁，其他服务没有创建节点成功，就等待。
+ * 其他服务器，使用事件监听，获取节点的通知，如果节点已经被删除，
+ * 应该获取锁的资源。
+ *                    
+ *                    
  */
 public class ThreadPool {
 	public static void main(String[] args) {

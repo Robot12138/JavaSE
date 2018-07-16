@@ -38,7 +38,16 @@ class ThreadDemo1 extends Thread{
 }
 */
 
-
+/**
+ * 原子操作是不可分割的整体，
+ * 没有其他线程能够中断或者检查正在原子操作中的变量。
+ * 一个原子类型就是一个原子操作可用的对象。
+ * 因为原子类的方法虽然是原子的，但是方法与方法之间却不是原子的。
+ * 解决的方法就是必须使用同步
+ * 
+ * @author Yin
+ *
+ */
 
 public class ThreadVolatie extends Thread {
 	//10个线程共享count
